@@ -54,5 +54,8 @@ group :development do
 
 #   bootstrap
   gem 'bootstrap-sass'
+
+  #jQuery
+  gem 'jquery-turbolinks'
 end
 
