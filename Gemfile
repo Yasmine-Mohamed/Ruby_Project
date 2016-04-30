@@ -57,5 +57,9 @@ group :development do
 
   #jQuery
   gem 'jquery-turbolinks'
+
+  #uploading
+  gem 'carrierwave'
+  gem 'mini_magick', '~> 4.3'
 end
 

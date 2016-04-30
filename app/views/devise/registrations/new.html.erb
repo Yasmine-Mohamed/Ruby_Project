@@ -32,17 +32,17 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :profile_picture%>
-      <%= f.text_field :profile_picture, class: 'form-control'%>
-    </div>
-
-    <div class="form-group">
       <%= f.label :gender%>
       <br>
       <%= f.label :gender, 'Male'%>
       <%= f.radio_button :gender,'Male'%>
       <%= f.label :gender, 'Female'%>
       <%= f.radio_button :gender,'Female'%>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :upload_profile_picture%>
+      <%= f.file_field :profile_picture%>
     </div>
 
     <div class="actions">
