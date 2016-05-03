@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<div class="panel panel-default">
+  <div class="panel-heading"><%= @course.title %></div>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th></th>
+      <th>Lectures</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+         <% @course.lectures.each do |lecture|%>
+         <tr>
+           <td></td>
+           <td><%= lecture.content.html_safe %></td>
+            <td><%= link_to 'Open Lecture', lecture , class: 'btn btn-primary'%></td>
+           <td><%= link_to 'Destroy', lecture, method: :delete, data: { confirm: 'Are you want to delete this lecture?' } , class: 'btn btn-danger'%></td>
+
+         </tr>
+    <% end %>
+    </tbody>
+    </table>
+</div>
+
+<%= link_to ' Edit', edit_course_path(@course) , class: 'glyphicon glyphicon-edit' %> |
+<%= link_to ' Back', courses_path , class: 'glyphicon glyphicon-backward' %>

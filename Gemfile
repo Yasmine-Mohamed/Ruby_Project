@@ -61,5 +61,17 @@ group :development do
   #uploading
   gem 'carrierwave'
   gem 'mini_magick', '~> 4.3'
+
+  #ckeditor
+  gem 'ckeditor'
+
+  #like on lecture
+  gem 'acts_as_votable', '~> 0.10.0'
+
+  #comment
+  gem 'acts_as_commentable_with_threading'
+
+  gem 'acts_as_commentable'
+
 end
 

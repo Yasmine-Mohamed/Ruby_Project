@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+<div class="col-lg-8">
+  <div class="thumbnail thumb-box">
+    <h2 style="text-align: center;"><%= @lecture.course.try(:title) %></h2>
+    <%= @lecture.content.html_safe %>
+    <%= link_to @lecture.attachment.file.basename , @lecture.attachment_url %>
+    <div class="caption" style="text-align: center;">
+      <%= link_to like_lecture_path(@lecture), class: "like", method: :put do%>
+          <button type="button" class="btn btn-info" aria-label="left Align">
+            <span class="glyphicon glyphicon-thumbs-up glyphicon-align-center" aria-hidden="true"></span>
+            <span class="badge"><%= @lecture.get_upvotes.size%></span>
+          </button>
+      <% end %>
+      <%= link_to unlike_lecture_path(@lecture), class: "like", method: :put do%>
+          <button type="button" class="btn btn-info" aria-label="left Align">
+            <span class="glyphicon glyphicon-thumbs-down glyphicon-align-center" aria-hidden="true"></span>
+            <span class="badge"><%= @lecture.get_downvotes.size%></span>
+          </button>
+      <% end %>
+      <br><br>
+
+
+      <div>
+        <ul>
+          <% @lecture.comments.each  do |c| %>
+          <li><%= c.comment %></li>
+          <% end %>
+        </ul>
+            </div>
+
+        <%= form_for( comment = Comment.new, :url => { :action => :add_new_comment }) do |f| %>
+            <ol class="formList">
+              <p>
+                <%= f.text_area :comment, :rows => 5 , :cols => 50 %>
+              </p>
+              <div><%= f.submit "Add Comment" , class: 'btn btn-primary'%></div>
+            </ol>
+        <% end %>
+      </div>
+  </div>
+<br>
+
+  <%= link_to ' Edit', edit_lecture_path(@lecture) , class: 'glyphicon glyphicon-edit' %> |
+  <%= link_to ' Back', lectures_path , class: 'glyphicon glyphicon-backward' %>
+
+</div>
+</div>

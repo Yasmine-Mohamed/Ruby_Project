@@ -1,9 +1,30 @@
 Rails.application.routes.draw do
+  # get 'lectures/download'
+  # match "/uploads/lectures/:id/:basename.:extension", :controller => "lectures", :action => "download", via: :get
+
+  resources :lectures do
+    member do
+      put "like" , to: "lectures#upvote"
+      put "unlike" , to: "lectures#downvote"
+      post "comment" , to:"lectures#add_new_comment"
+    end
+    resources :comments
+  end
+  # match "/lectures/add_new_comment" => "lectures#add_new_comment", :as => "add_new_comment_to_lectures", :via => [:post]
+
+  resources :courses
+
+  # resources :lectures do |lecture|
+  #   lecture.resources :comments
+  # end
+
   default_url_options :host => 'localhost'
   devise_for :users
   devise_for :admins, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :users
+  resources :courses
+  resources :lectures
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

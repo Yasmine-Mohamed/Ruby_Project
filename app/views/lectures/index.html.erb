@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<br><br>
+<div class="panel panel-default">
+  <div class="panel-heading">Lectures</div>
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th>Attachment</th>
+      <th>Course</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lectures.each do |lecture| %>
+      <tr>
+        <td><%= lecture.content.html_safe %></td>
+        <% if lecture.attachment.file != nil%>
+        <td><%= link_to lecture.attachment.file.basename , lecture.attachment_url %></td>
+            <% end %>
+        <td><%= lecture.course.try(:title) %></td>
+        <td><%= link_to 'Show', lecture , class: 'btn btn-info'%></td>
+        <td><%= link_to 'Edit', edit_lecture_path(lecture) , class: 'btn btn-warning'%></td>
+        <td><%= link_to 'Destroy', lecture, method: :delete, data: { confirm: 'Are you want to delete this lecture?' } , class: 'btn btn-danger'%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+<br>
+<!--no caching js-->
+<%= link_to ' Add New Lecture', new_lecture_path , class: 'glyphicon glyphicon-duplicate', data: {no_turbolink: true}%>

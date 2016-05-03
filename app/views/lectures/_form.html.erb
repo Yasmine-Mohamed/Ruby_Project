@@ -1,0 +1,50 @@
+<%= form_for @lecture , html: {multipart: true} do |f| %>
+  <% if @lecture.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@lecture.errors.count, "error") %> prohibited this lecture from being saved:</h2>
+
+      <ul>
+      <% @lecture.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<br><br>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10">
+            <div class="form-group">
+              <%= f.label :content %><br>
+              <%= f.cktext_area :content %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4">
+              <div class="form-group">
+                <%= f.label :attachment %><br>
+                <%= f.file_field :attachment %>
+              </div>
+            </div>
+          </div>
+
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="form-group">
+              <%= f.label :course_id %><br>
+              <%= f.select :course_id , current_user.courses.collect {|c| [c.title ,c.id]} , include_blank: true %>
+            </div>
+          </div>
+        </div>
+
+      <div class="row">
+        <div class="col-lg-4">
+            <div class="actions">
+              <%= f.submit "Add" , class: 'btn btn-primary btn-block' %>
+            </div>
+        </div>
+      </div>
+<% end %>
+</div>
