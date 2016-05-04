@@ -32,15 +32,6 @@
 
       <div class="row">
         <div class="col-lg-4">
-          <div class="form-group">
-              <%= f.label :course_id %><br>
-              <%= f.select :course_id , current_user.courses.collect {|c| [c.title ,c.id]} , include_blank: true %>
-            </div>
-          </div>
-        </div>
-
-      <div class="row">
-        <div class="col-lg-4">
             <div class="actions">
               <%= f.submit "Add" , class: 'btn btn-primary btn-block' %>
             </div>

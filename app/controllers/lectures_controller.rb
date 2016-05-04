@@ -7,14 +7,20 @@ class LecturesController < InheritedResources::Base
   end
 
   def new
-    @lecture = Lecture.new
+    if session[:course_id].nil?
+      redirect_to courses_path
+    else
+      @lecture = Lecture.new
+    end
   end
 
   def create
     @lecture = Lecture.new(lecture_params.merge(user_id: current_user.id))
+    @lecture.course_id = session[:course_id]
 
 
     if @lecture.save
+      session[:course_id] = nil
       redirect_to lectures_path, notice: "The lecture #{@lecture.id} has been uploaded."
     else
       render "new"
@@ -22,7 +28,6 @@ class LecturesController < InheritedResources::Base
   end
 
   def edit
-
     @lecture = Lecture.find(params[:id])
     if @lecture.user_id != current_user.id
       render :file => "#{Rails.root}/public/422.html"
@@ -55,7 +60,13 @@ class LecturesController < InheritedResources::Base
     if @comment.save
       redirect_to @lecture
     end
+  end
 
+  def delete_comment
+    @comment = Comment.find(params[:id])
+    lect_id = @comment.lecture.id
+    @comment.destroy
+    redirect_to lecture_path lect_id
   end
 
   def show
@@ -66,7 +77,7 @@ class LecturesController < InheritedResources::Base
   private
 
     def lecture_params
-      params.require(:lecture).permit(:content, :attachment, :course_id)
+      params.require(:lecture).permit(:content, :attachment)
     end
 
   def comment_params

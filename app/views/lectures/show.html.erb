@@ -20,14 +20,29 @@
       <% end %>
       <br><br>
 
+      <% @lecture.comments.each  do |c| %>
+          <div align="center">
+            <div class="row">
+            <div class="col-sm-1">
+              <div class="thumbnail">
+                <%= image_tag current_user.profile_picture.thumb.url %>
+              </div><!-- /thumbnail -->
+            </div><!-- /col-sm-1 -->
+            <div class="col-sm-5">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <strong><%= current_user.name %></strong>
+                </div>
+                <div class="panel-body">
+                  <%= link_to 'Destroy', (@lecture.id).to_s+"/delete_comment/"+(c.id).to_s, method: :delete, data: { confirm: 'Are you want to delete this comment?' } , class: 'btn btn-danger'%>
+                  <%= c.comment %>
+                </div><!-- /panel-body -->
+              </div><!-- /panel panel-default -->
+            </div><!-- /col-sm-5 -->
+          </div>
+          </div>
+      <% end %>
 
-      <div>
-        <ul>
-          <% @lecture.comments.each  do |c| %>
-          <li><%= c.comment %></li>
-          <% end %>
-        </ul>
-            </div>
 
         <%= form_for( comment = Comment.new, :url => { :action => :add_new_comment }) do |f| %>
             <ol class="formList">
@@ -40,8 +55,9 @@
       </div>
   </div>
 <br>
-
+  <% if @lecture.user_id == current_user.id %>
   <%= link_to ' Edit', edit_lecture_path(@lecture) , class: 'glyphicon glyphicon-edit' %> |
+      <% end %>
   <%= link_to ' Back', lectures_path , class: 'glyphicon glyphicon-backward' %>
 
 </div>

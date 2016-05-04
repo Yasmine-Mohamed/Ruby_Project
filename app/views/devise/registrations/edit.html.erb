@@ -1,5 +1,4 @@
-<% header 'Hello ' + current_user.name %>
-
+<% header "Edit #{resource_name.to_s.humanize}"%>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= devise_error_messages! %>
 
@@ -95,7 +94,7 @@
 <br>
 <div class="row">
   <div class="col-lg-offset-3 col-lg-6">
-        <%= button_to "Deactivatel my account", registration_path(resource_name), class: 'btn btn-danger btn-block',
+        <%= button_to "Deactivate my account", registration_path(resource_name), class: 'btn btn-danger btn-block',
                       data: { confirm: "Are you sure?" }, method: :delete %>
     <br>
       <%= link_to " Back", :back,  class: 'glyphicon glyphicon-backward'%>

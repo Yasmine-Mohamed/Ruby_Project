@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       put "like" , to: "lectures#upvote"
       put "unlike" , to: "lectures#downvote"
       post "comment" , to:"lectures#add_new_comment"
+      delete "delete_comment/:id", to: "lectures#delete_comment"
     end
     resources :comments
   end
