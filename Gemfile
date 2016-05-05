@@ -34,9 +34,35 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :development, :test do
+group :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+
+  # Use Active admin gem
+  gem 'activeadmin' , '~> 1.0.0.pre2'
+
+  #Create Admin
+  gem 'devise' , '~> 3.2'
+
+  #   bootstrap
+  gem 'bootstrap-sass'
+
+  #jQuery
+  gem 'jquery-turbolinks'
+
+  #uploading
+  gem 'carrierwave'
+  gem 'mini_magick', '~> 4.3'
+
+  #ckeditor
+  gem 'ckeditor'
+
+  #like on lecture
+  gem 'acts_as_votable', '~> 0.10.0'
+
+  #cancancan
+  gem 'cancancan', '~> 1.10'
+
 end
 
 group :development do

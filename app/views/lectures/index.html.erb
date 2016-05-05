@@ -30,4 +30,8 @@
 </table>
 <br>
 <br>
-<%= link_to ' Back', courses_path , class: 'glyphicon glyphicon-backward' %>
+<% if current_user.instractor?%>
+  <%= link_to ' Back', courses_path , class: 'glyphicon glyphicon-backward' %>
+<% else %>
+    <%= link_to ' Back', root_path , class: 'glyphicon glyphicon-backward' %>
+<% end %>

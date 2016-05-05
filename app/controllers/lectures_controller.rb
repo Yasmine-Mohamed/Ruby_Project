@@ -41,12 +41,14 @@ class LecturesController < InheritedResources::Base
     redirect_to lectures_path , notice: "The Lecture #{@lecture.id} has been deleted"
   end
 
+  #like lecture
   def upvote
     @lecture = Lecture.find(params[:id])
     @lecture.upvote_by current_user
     redirect_to lecture_path
   end
 
+  #unlike lecture
   def downvote
     @lecture = Lecture.find(params[:id])
     @lecture.downvote_by current_user

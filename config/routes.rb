@@ -2,18 +2,6 @@ Rails.application.routes.draw do
   # get 'lectures/download'
   # match "/uploads/lectures/:id/:basename.:extension", :controller => "lectures", :action => "download", via: :get
 
-  resources :lectures do
-    member do
-      put "like" , to: "lectures#upvote"
-      put "unlike" , to: "lectures#downvote"
-      post "comment" , to:"lectures#add_new_comment"
-      delete "delete_comment/:id", to: "lectures#delete_comment"
-    end
-    resources :comments
-  end
-  # match "/lectures/add_new_comment" => "lectures#add_new_comment", :as => "add_new_comment_to_lectures", :via => [:post]
-
-  resources :courses
 
   # resources :lectures do |lecture|
   #   lecture.resources :comments
@@ -80,4 +68,16 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  resources :lectures do
+    member do
+      put "like" , to: "lectures#upvote"
+      put "unlike" , to: "lectures#downvote"
+      post "comment" , to:"lectures#add_new_comment"
+      delete "delete_comment/:id", to: "lectures#delete_comment"
+    end
+    resources :comments
+  end
+  # match "/lectures/add_new_comment" => "lectures#add_new_comment", :as => "add_new_comment_to_lectures", :via => [:post]
+
+  resources :courses
 end
