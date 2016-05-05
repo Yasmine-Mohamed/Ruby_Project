@@ -68,10 +68,8 @@ group :development do
   #like on lecture
   gem 'acts_as_votable', '~> 0.10.0'
 
-  #comment
-  gem 'acts_as_commentable_with_threading'
-
-  gem 'acts_as_commentable'
+  #cancancan
+  gem 'cancancan', '~> 1.10'
 
 end
 

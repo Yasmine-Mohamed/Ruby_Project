@@ -67,6 +67,19 @@
     <div class="row">
       <div class="col-lg-offset-3 col-lg-6">
         <div class="form-group">
+          <%= f.label :role%>
+          <br>
+          <%= f.label :role, 'instractor'%>
+          <%= f.radio_button :role,'instractor'%>
+          <%= f.label :role, 'guest'%>
+          <%= f.radio_button :role,'guest'%>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-offset-3 col-lg-6">
+        <div class="form-group">
           <%= f.label :profile_picture %>
           <%= f.file_field :profile_picture, class: 'form-control' %>
         </div>

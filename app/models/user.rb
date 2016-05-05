@@ -8,4 +8,13 @@ class User < ActiveRecord::Base
   has_many :lectures
   has_many :comments
   acts_as_voter
+
+  def instractor?
+    self.role == 'instractor'
+  end
+
+  def guest?
+    self.role == 'guest'
+  end
+
 end

@@ -25,7 +25,9 @@
     </table>
 </div>
 <% session[:course_id] = @course.id %>
-<%= link_to ' Add New Lecture', new_lecture_path , class: 'glyphicon glyphicon-duplicate', data: {no_turbolink: true} %>
+<% if @course.user_id == current_user.id%>
+    <%= link_to ' Add New Lecture', new_lecture_path , class: 'glyphicon glyphicon-duplicate', data: {no_turbolink: true} %>
+<% end %>
 <br>
 
 <%= link_to ' Back', courses_path , class: 'glyphicon glyphicon-backward' %>

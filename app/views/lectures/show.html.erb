@@ -3,7 +3,9 @@
 <div class="col-lg-8">
   <div class="thumbnail thumb-box">
     <h2 style="text-align: center;"><%= @lecture.course.try(:title) %></h2>
+    <h3>Content</h3>
     <%= @lecture.content.html_safe %>
+    <h3>Attachment</h3>
     <%= link_to @lecture.attachment.file.basename , @lecture.attachment_url %>
     <div class="caption" style="text-align: center;">
       <%= link_to like_lecture_path(@lecture), class: "like", method: :put do%>

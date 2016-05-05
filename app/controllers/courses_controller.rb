@@ -1,5 +1,6 @@
 class CoursesController < InheritedResources::Base
   before_action :authenticate_user!
+  load_and_authorize_resource
 
   def create
     @course = Course.new(course_params.merge(user_id: current_user.id))

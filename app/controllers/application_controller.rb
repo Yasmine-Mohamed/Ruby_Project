@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  # to insert data into database
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :name
     devise_parameter_sanitizer.for(:account_update) << :name
@@ -17,7 +18,16 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << :gender
     devise_parameter_sanitizer.for(:account_update) << :gender
 
+    devise_parameter_sanitizer.for(:sign_up) << :role
+    devise_parameter_sanitizer.for(:account_update) << :role
+
     devise_parameter_sanitizer.for(:sign_up) << :profile_picture
     devise_parameter_sanitizer.for(:account_update) << :profile_picture
+  end
+
+  #an error message for guest to make CRUD on  course or lecture
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = "Access denied!"
+    redirect_to root_url
   end
 end
